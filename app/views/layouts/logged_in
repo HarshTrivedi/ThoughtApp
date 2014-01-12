@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%@user= User.find_by_profile_name(session[:profile_name])%>
+  <title>ThoughtApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container-fluid">
+<div class="row-fluid">
+
+
+<%if session[:user_id]!=nil%>
+<div class=<%="side_bar_customized" if session[:user_id]!=nil%>>	
+
+	<table>
+	<div class="show_image_sidebar"><%= image_tag(@user.avatar, :size => '100x50') %></div>
+
+    </table>
+    <div class="side_bar_content">
+    	<br/><br/><br/><br/><br/>
+		         	<form class="navbar-search pull-left" action="../../../user/show_search_results_from_all_users">
+                      <input type="text" class="search-query span12" name="search_tag" placeholder="Search any User here">
+                    </form>
+		<br/><br/><br/>
+         <ul class="side_bar_listing">
+         	<li>Notifications:</li><br/>
+         	<li>Reputation   :</li><br/>
+         	<li>
+         		<strong><%=link_to( "Followers    :  " + @user.followers.count.to_s, {:controller => 'user' , :action=> 'followers' , :this_profile_name => @user.profile_name} , :class => "side_bar_link")%></strong>
+         	</li>
+         	<br/>
+         	<li>
+        		<strong><%=link_to( "Followings   :  " + @user.following.count.to_s, {:controller => 'user' , :action=> 'following' , :this_profile_name => @user.profile_name} , :class => "side_bar_link")%></strong>
+         	</li><br/>
+         <ul>
+    </div>
+</div>
+
+                            
+
+<div class="pagination pagination-large">
+  <ul>
+    <li><a href="../../thoughts/show">Private Dash-Board</a></li>
+    <li><a href="../../thoughts/show_thoughts_from_others">Public Dash-Board</a></li>    
+  </ul>
+</div>
+
+<%= link_to("Create a new Thought.", {:controller => 'thoughts' , :action => 'new'}, class: "btn btn-success right_top") %>
+
+
+<%end%>
+
+<div class=<%="main_content" if session[:user_id]!=nil%> >
+
+		<% if !flash[:notice].blank? %>
+			<div class="alert alert-success">
+				<button class="close" data-dismiss="alert">x</button>
+				<%= flash[:notice] %>
+			</div>
+		<%end%>	
+		<% if !flash[:alert].blank? %>
+			<div class="alert alert-error">
+				<button class="close" data-dismiss="alert">x</button>
+				<%= flash[:alert] %>
+			</div>
+		<%end%>	
+
+	<% if session[:profile_name] == nil %>
+
+			<div class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="navbar-inner">
+	        <div class="container">
+	          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="brand" href="#">ThoughtApp</a>
+	          <div class="nav-collapse collapse">
+	            <ul class="nav">
+	              <li class="">
+	                <li><%= link_to(" Please Login", {}) %></li>
+	              </li>
+	            </ul>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	<%else%>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">ThoughtApp</a>
+          <div class="nav-collapse collapse">
+   		      <ul class="nav navbar-nav">
+		      	 <li>
+		         	<form class="navbar-search pull-left" action="../../../thoughts/show_search_results_from_all_thoughts">
+                      <input type="text" class="search-query span12" name="search_tag" placeholder="Search by Tag / Title">
+                    </form>
+		         </li>
+
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+
+
+		      	 <li><%= link_to("Home", {:controller => 'thoughts', :action => 'show', :profile_name => session[:profile_name]}) %></li>
+		        <li><%= link_to("View Profile", {:controller => 'user', :action => 'show', :profile_name => session[:profile_name]}) %></li>
+				<li><%= link_to("Edit Profile", {:controller => 'user', :action => 'edit', :profile_name => session[:profile_name]}) %></li>
+				<li><%= link_to("Delete Account", {:controller => 'user', :action => 'delete', :profile_name => session[:profile_name]}) %></li>
+				<li><%= link_to("Log Off", {:controller => 'access', :action => 'logout'}) %></li>
+		         <li><%= link_to(" #{session[:profile_name]}", {:controller => 'user', :action => 'show', :profile_name => session[:profile_name]}) %></li>
+				
+
+				<%this_user = User.find_by_profile_name(session[:profile_name])%>
+		         <li><div class="nav_image"><a href='../../../user/show?profile_name=<%=this_user.profile_name%>'><%= image_tag(this_user.avatar, :size =>'60x60')%> </a></div></li>
+
+
+
+		      </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<%end%>
+
+	<%= yield %>
+
+</div>
+
+</div>
+</div>
+</body>
+
+<%if session[:user_id]!=nil%>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<%end%>
+
+<footer class="footer">
+      <div class="container">
+        <p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">Harsh</a>. Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">harshjtrivedi94@gmail.com</a>
+      </div>
+</footer>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+

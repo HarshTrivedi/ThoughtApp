@@ -1,0 +1,229 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+body {
+	padding-top: 58px;
+	width: 100%;
+	padding-bottom: 100px;
+}
+
+.pre_login_page{
+	background-image: url(/assets/loginBackground1.jpg);
+	background-size:1400px 800px;
+	background-repeat:no-repeat;	
+}
+
+.customized_form{
+	margin-top: 30px;
+	padding-top: 0px;
+}
+
+
+.footer {
+	color: white;
+	margin-bottom: 0px;
+	padding-top: 10px;
+	border-top: 1px solid black;
+	background-color: #1b1b1b;
+	bottom: 0px;
+	width: 100%;
+ 	position: fixed;
+}
+
+.odd {
+	background-color: #E4F4FF;	
+	-webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+     border-radius: 30px;
+	 -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.even {
+	background-color: #C9E8FF;
+	-webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+     border-radius: 30px;
+	 -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+
+.show_image{
+	border: solid white 1px;
+    box-shadow: 0 1px 10px black;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.show_image:hover{
+
+    box-shadow: 0 1px 10px grey
+}
+
+
+.nav_image{
+	margin-top: 3px;
+	margin-bottom: 3px;	
+    box-shadow: 0 1px 10px black;
+    border-radius: 5px;
+    overflow: hidden;
+    background: transparent;
+}
+
+.nav_image:hover{
+
+	  box-shadow: 0 1px 10px grey
+}
+
+
+
+#lefile{
+	width: 100px;
+	display: none;
+}
+
+.check_out{
+		border: 1px solid black;
+
+}
+
+#photoCover{
+	width: 180px;
+}
+
+
+
+.odd:hover{
+	background-color: #86CDFF;
+	box-shadow: 0 1px 10px black;
+
+}
+
+.even:hover{
+	background-color: #86CDFF;
+    box-shadow: 0 1px 10px black;
+
+}
+
+
+
+
+
+.listing_image{
+	margin-top: 3px;
+	margin-bottom: 3px;	
+    border-radius: 5px;
+    overflow: hidden;
+    background: transparent;
+}
+
+
+
+
+.side_bar_customized{
+	min-width: 200px;
+	min-height: 1000px;	
+	max-width: 200px;
+	max-height: 1000px;		
+	float: left;
+	border: 1px;
+	border-color: #F2FA78;	
+	border-radius: 20px;
+	background-color: #494949;
+	box-shadow: 2px 1px 6px black;
+	position: absolute;
+	top: 0px;
+	left: 0px;	
+	padding: 20px;
+	position: fixed;
+}
+
+.main_content{
+	min-width: 900px;
+	max-width: 900px;
+	width: 500px;
+	float: right;
+	border: solid black 1px;
+	border-radius: 20px;
+	position: absolute;
+	left: 330px;
+	top: 90px;
+	padding: 20px;	
+	background-color: #F0FCFF;
+	border-color:#C9E8FF;
+	box-shadow: 2px 1px 5px #434E7B;	 
+}
+
+.back_to_home{
+
+	position: relative;
+	left: 80px;
+}
+
+
+.show_image_sidebar{
+	border: solid white 1px;
+    box-shadow: 0 1px 10px black;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100px;
+    position: absolute;
+    left: 65px;
+    top: 70px;    
+}
+
+.side_bar_content{
+	border-color: solid 1px white;
+	position: absolute;
+	top: 100px;
+	width: 200px;
+	height: 500px;	
+}
+.grey_color{
+
+	border-color: #63656E;
+    border-radius: 1px;
+    box-shadow: 0 1px 1px #5A5A5A;    
+}
+
+.side_bar_listing{
+
+	font-size: 15px;
+	color: white;
+}
+
+.pagination{
+	position:relative; 
+	left: 330px;
+	top: -25px;	
+}
+
+
+.right_top{
+	position: absolute;
+	left: 1050px;
+	top:64px;
+
+}
+
+.side_bar_link{
+
+	color: white;
+}
+
+.side_bar_link:hover{
+	color: #0088cc;
+}

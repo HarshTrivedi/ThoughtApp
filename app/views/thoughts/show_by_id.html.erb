@@ -1,0 +1,38 @@
+
+<br/>
+<%= link_to("Back to Home", {:controller => 'thoughts' , :action => 'show'}, class: "btn btn-info back_to_home") %>
+
+<div class='customized_form'>   
+
+<div class='row'>
+<div class='span6'>
+
+<div class='well'>   
+
+<div >   
+
+
+            <fieldset>
+              <legend><strong>Your Thought</strong></legend> 
+
+                <strong>Title</strong>  <br/>
+                <%= @thought.title %> <br/>
+                
+                <strong>Content</strong>  <br/>
+                <%= simple_format(word_wrap(@thought.content, :line_width => 100))  %>
+
+                <strong>Tag</strong>  <br/>
+                <%= @thought.tag %> <br/>
+
+                <strong>Privacy</strong>  <br/>
+                <%= @thought.private %> <br/>
+
+            </fieldset>
+
+</div>   
+  
+  </div>
+
+</div>
+</div>
+</div>

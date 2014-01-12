@@ -1,0 +1,97 @@
+
+<div class="page-header">
+    <h2><div class="listing_image"><%= image_tag(@this_user.avatar, :size =>'80x80') %>
+    Search results on private dash board<em>        
+    <form class="navbar-search pull-right" action="../../../thoughts/show_search_results_from_my_thoughts">
+         <input type="text" class="search-query span12" name="search_tag" placeholder="Search your thoughts">
+       </form>
+    </div><h2>
+</div>	
+
+
+
+<br/><br/><strong><em>Public:</em></strong> 
+<div class="public_thoughts">	
+	<div class="bs-docs-example">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Author</th>                  
+                  <th>Title</th>
+                  <th>Content</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>                  
+                </tr>
+              </thead>
+              <tbody>
+                <% @thought.each do |t| %>
+                  <%if t.private == false%>
+                    <tr class="<%= cycle('odd','even') %>">     
+                          <td>
+                              <%this_user = User.find_by_profile_name(session[:profile_name])%>
+                               <a href='../../../user/show?profile_name=<%=this_user.profile_name%>'><div class="listing_image"><%= image_tag(this_user.avatar, :size =>'60x60')%><div> </a>
+
+                          </td>
+                          <td><%= t.title %></td>
+                          <td>
+                            <%= simple_format(word_wrap(truncate(t.content, :length => 100, :omission => "..."), :line_width => 40))  %>
+                          </td>
+                          <td>
+                            <%= pluralize(t.likes, "like")  %>
+                          </td>                          
+                          <td><%= link_to( "updated " + time_ago_in_words(t.updated_at) + " ago", {:controller => 'thoughts' , :action => 'show_by_id' , :id => t.id} ) %>
+                          </td>
+                          <td><%= link_to("Edit Thought" , {:controller => 'thoughts' , :action => 'edit' , :id => t.id} ) %>
+                          </td>
+                         <td><%= link_to("Delete Thought" , {:controller => 'thoughts' , :action => 'delete' , :thought_id => t.id} ) %>
+                         </td>
+                  </tr>
+                  <%end%> 
+                <%end%>
+              </tbody>
+            </table>
+</div>
+</div>
+
+	<br/><strong><em>Private:</em></strong> <br/>
+	<div class="private_thoughts">
+	<div class="bs-docs-example">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Author</th>
+                  <th>Title</th>
+                  <th>Content</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>                  
+                </tr>
+              </thead>
+              <tbody>
+              	<% @thought.each do |t| %>
+                  <%if t.private == true%>
+                    <tr class="<%= cycle('odd','even') %>">                   
+                          <td>
+                              <%this_user = User.find_by_profile_name(session[:profile_name])%>
+                               <a href='../../../user/show?profile_name=<%=this_user.profile_name%>'><div class="listing_image"><%= image_tag(this_user.avatar, :size =>'60x60')%><div> </a>
+
+                          </td>
+                          <td><%= t.title %></td>
+                          <td>
+                            <%= simple_format(word_wrap(truncate(t.content, :length => 100, :omission => "..."), :line_width => 40))  %>
+                          </td>
+                          <td><%= link_to( "updated " + time_ago_in_words(t.updated_at) + " ago", {:controller => 'thoughts' , :action => 'show_by_id' , :id => t.id} ) %>
+                          </td>
+                          <td><%= link_to("Edit Thought" , {:controller => 'thoughts' , :action => 'edit' , :id => t.id} ) %>
+                          </td>
+                         <td><%= link_to("Delete Thought" , {:controller => 'thoughts' , :action => 'delete' , :thought_id => t.id} ) %>
+                         </td>
+                  </tr>
+                  <%end%> 
+                <%end%>
+              </tbody>
+            </table>
+</div>
+</div>
+

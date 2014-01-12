@@ -1,0 +1,116 @@
+            <% if !params[:error].blank? %>
+                
+                <% if params[:error] == 'mismatch' %>
+                  <div class="alert alert-error">
+                    <button class="close" data-dismiss="alert">x</button>
+                    Please make sure that the passwords match
+                  </div>
+                <%end%>
+
+                <% if params[:error] == 'too short' %>
+                  <div class="alert alert-error">
+                    <button class="close" data-dismiss="alert">x</button>
+                    Passwords is too short. It should be between 5 to 15
+                  </div>
+                <%end%>
+
+                <% if params[:error] == 'too long' %>
+                  <div class="alert alert-error">
+                    <button class="close" data-dismiss="alert">x</button>
+                    Passwords is too long. It should be between 5 to 15
+                  </div>
+                <%end%>
+            <%end%>
+
+<%= link_to("Back to Home", {:controller => 'thoughts' , :action => 'show'}, class: "btn btn-info back_to_home") %>
+
+<div class='customized_form'>   
+
+<div class='row'>
+
+<div class='span5'>
+
+<div class='well'>   
+  <%= form_for(:user, :url => {:action => 'update', :profile_name => @user.profile_name},  :html => { :multipart => true }) do |f| %>
+  
+          <%if @user.errors.size > 0%>
+            <div class="alert alert-block">
+               <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <%= error_messages_for(@user) %>
+            </div>
+          <%end%>
+
+     <fieldset>
+    <table>
+            <legend><strong>Edit Profile</strong></legend> 
+              
+            
+            <input id="lefile" type="file" name="user[avatar]">
+                <div class="input-append">
+                  <input id="photoCover" class="input-large" type="text" disabled>
+                  <a class="btn btn-info" onclick="$('input[id=lefile]').click();">Choose Avatar</a>
+              </div>
+            </input>
+              
+              <tr>
+                <th align='left'><%= f.label(:last_name) %></th>
+                <td align='left'><%= f.text_field(:last_name) %></td>
+              </tr>
+              <tr>
+                <th align='left'><%= f.label(:profile_name) %></th>
+                <td align='left'><%= f.text_field(:profile_name) %></td>
+              </tr>
+              <tr>
+                <th align='left'><%= f.label(:email_address) %></th>
+                <td align='left'><%= f.text_field(:email_address) %></td>
+              </tr>
+<script type="text/javascript">
+$('input[id=lefile]').change(function() {
+$('#photoCover').val($(this).val());
+});</script>
+
+    </table>
+    <div class="form-buttons">
+      <%= submit_tag("Update my profile", class: "btn btn-primary") %>
+                    <tr><%= link_to("Change my Pass-word", {:controller => 'password' , :action => 'change_password_form'}, class: "btn btn-info") %></tr>
+    </div>
+     </fieldset>
+  <% end %>
+
+</div>
+</div>
+
+
+
+
+<div class="span5">
+
+            <div class='well'>
+             <%= form_tag(:controller => 'password' , :action => 'update_password') do %>
+             <fieldset>
+              <legend><strong>Change Password</strong></legend>
+              <table>
+                <tr>
+                  <td><%= label_tag(:password) %>
+                  <%= password_field_tag(:password) %></td>
+                </tr>
+                <tr>
+                  <td><%= label_tag(:password_confirmation) %>
+                  <%= password_field_tag(:password_confirmation)%></td>
+                </tr>
+              </table>
+
+              <%= submit_tag("Confirm", class: "btn btn-primary") %>
+            </fieldset>
+              <% end %>
+            </div>
+            </div>
+</div>
+
+
+</div>
+</div>
+
+
+
+ </div>

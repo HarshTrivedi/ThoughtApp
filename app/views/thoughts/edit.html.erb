@@ -1,0 +1,52 @@
+<br/>
+<%= link_to("Back to Home", {:controller => 'thoughts' , :action => 'show'}, class: "btn btn-info back_to_home") %>
+
+<div class='customized_form'>   
+
+<div class='row'>
+<div class='span4'>
+
+<div class='well'>   
+
+  <%= form_for(:thought, :url => {:controller => 'thoughts',:action => 'update', :id => params[:id]}) do |f| %>
+
+            
+            <%if @thought.errors.size > 0%>
+            <div class="alert alert-block">
+               <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <%= error_messages_for(@thought) %>
+            </div>
+            <%end%>
+            <fieldset>
+            <table>       
+              <legend><strong>Make a Thought</strong></legend> 
+              <tr>
+                <td>
+                  <%= f.label(:tag, "Title (Optional):") %>
+                  <%= f.text_field(:title,) %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= f.label(:content, "Your Thought:") %><%= f.text_area(:content, :size => "29x10") %></td>
+              </tr>
+              <tr>
+              <tr>
+                <td><%= f.label(:tag, "Assign Tag (Optional):") %><%= f.text_field(:tag,) %></td>
+              </tr>
+              <tr>
+                <td>
+                <strong>Private  </strong><%= f.radio_button(:private , true) %>
+                <strong>  Public  </strong><%= f.radio_button(:private , false) %> <br/><br/>
+                <%= submit_tag('Update thought', class: "btn btn-primary") %>
+
+                <td/>
+              </tr>
+            </table>
+            </fieldset>
+  
+  <% end %>
+  </div>
+
+</div>
+</div>
+</div>

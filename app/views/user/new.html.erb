@@ -1,0 +1,59 @@
+
+<body class="pre_login_page">
+
+<%session[:user_id] = nil%>
+<%session[:profile_name] = nil%>
+
+<%= link_to("Back to Login Page", {:controller => 'access' , :action => 'login'}, class: "btn btn-info") %>
+<div class='customized_form'>   
+
+<div class='row'>
+<div class='span6'>
+
+<div class='well'>   
+
+  <%= form_for(:user, :url => {:action => 'create'}) do |f| %>
+
+            <%if @user.errors.size > 0%>
+              <div class="alert alert-block">
+                 <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <%= error_messages_for(@user) %>
+              </div>
+           <%end%>
+            <fieldset>
+            <table >
+              <legend><strong>Sign Up</strong></legend>        
+              <tr>
+                <th><%= f.label(:first_name) %></th>
+                <td><%= f.text_field(:first_name) %></td>
+              </tr>
+              <tr>
+                <th><%= f.label(:last_name) %></th>
+                <td><%= f.text_field(:last_name) %></td>
+              </tr>
+              <tr>
+                <th><%= f.label(:profile_name) %></th>
+                <td><%= f.text_field(:profile_name) %></td>
+              </tr>
+              <tr>
+                <th><%= f.label(:email_address) %></th>
+                <td><%= f.text_field(:email_address) %></td>
+              </tr>
+                <tr>
+                <th><%= f.label(:password) %></th>
+                <td><%= f.password_field(:password) %></td>
+              </tr>
+            </table>
+
+
+      <%= submit_tag('Sign Up', class: "btn btn-primary") %>
+          </fieldset>
+      </div>
+    <% end %>
+    </div>
+    <div class='span6'>
+    </div class='span6'>
+</div>
+</div>
+
+<body>

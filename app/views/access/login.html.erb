@@ -1,0 +1,41 @@
+<body class="pre_login_page">
+
+<%session[:user_id] = nil%>
+<%session[:profile_name] = nil%>
+
+
+
+<div class='customized_form'> 
+         <div class='row'>
+            <div class='span3'>
+
+            <div class='well'>              
+             <%= form_tag(:action => 'attempt_login') do %>
+             <br/><br/>
+             <fieldset>
+              <legend><strong>Sign In</strong></legend>
+              <table>
+                <tr>
+                      <td><%= label_tag(:profile_name, "Profile Name") %>
+                      <%= text_field_tag(:username) %></td>
+                </tr>
+                <tr>
+                  <td><%= label_tag(:password) %>
+                  <%= password_field_tag(:password) %></td>
+                </tr>
+                
+              </table>
+
+              <%= submit_tag("Log In", class: "btn btn-primary") %>
+              <%= link_to("Sign Up", {:controller => 'user',:action => 'new'} , class: "btn btn-primary") %><br/><br/>
+              <%= link_to("Forgot Password?", {:controller => 'password',:action => 'request_update'}) %>
+            </fieldset>
+              <% end %>
+            </div>
+            </div>
+            <div class="span8">
+
+            </div>
+          </div>
+ </div>
+</body>

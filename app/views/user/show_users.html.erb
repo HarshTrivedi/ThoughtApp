@@ -1,0 +1,44 @@
+<%@user = User.where("")%>
+<div class="page-header">
+	<h2> Users </h2>
+</div>	
+
+
+<%= link_to("Back to Home", {:controller => 'thoughts' , :action => 'show'}, class: "btn btn-info") %>
+<%= link_to("Check All Users", {:controller => 'user' , :action => 'show_users'}, class: "btn btn-success") %>
+<br/><br/> 
+<div class="public_thoughts">	
+	<div class="bs-docs-example">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>User</th>                  
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @user.each do |u| %>
+                    <tr class="<%= cycle('odd','even') %>">                   
+                          <td>
+                              <%this_user = User.find_by_profile_name(u.profile_name)%>
+                               <a href='../../../user/show?profile_name=<%=this_user.profile_name%>'><div class="listing_image"><%= image_tag(this_user.avatar, :size =>'60x60')%><div> </a>
+
+                          </td>
+                          <td><%= u.profile_name %></td>
+                          <td>
+                            <a><%=link_to(pluralize(u.followers.count, "follower"), {:controller => 'user' , :action=> 'followers', :this_profile_name => u.profile_name})%></a>
+                          </td>
+                          <td>
+                            <a><%=link_to(pluralize(u.following.count, "following"), {:controller => 'user' , :action=> 'following', :this_profile_name => u.profile_name})%></a>                            
+                          </td>
+                   </tr>
+                  <%end%> 
+              </tbody>
+            </table>
+</div>
+</div>
+
+
+
+
+  

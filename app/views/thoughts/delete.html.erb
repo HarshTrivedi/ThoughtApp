@@ -1,0 +1,23 @@
+<br/>
+<%= link_to("Back to Home", {:controller => 'thoughts' , :action => 'show'}, class: "btn btn-info back_to_home") %>
+
+<div class='customized_form'>   
+
+<div class='row'>
+<div class='span5'>
+
+<div class='well'>  
+  <%= form_for(:thought, :url => {:controller => 'thoughts',:action => 'destroy', :id => @id}) do |f| %>
+        <legend><strong>Confirm delete your account?</strong></legend>
+		 Yes <%= radio_button_tag("confirmation", "Yes") %>
+         No <%= radio_button_tag("confirmation", "No", :default => true) %>
+    </tr>
+      <%= submit_tag("Submit", class: "btn btn-primary") %>
+    
+  <% end %>
+ </div>
+
+</div>
+</div>
+</div>
+

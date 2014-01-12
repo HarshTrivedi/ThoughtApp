@@ -1,0 +1,70 @@
+<%@user= User.find_by_profile_name(params[:profile_name])%>
+
+<br/>
+<%= link_to("Back to Home", {:controller => 'thoughts' , :action => 'show'}, class: "btn btn-info back_to_home") %>
+
+<div class='customized_form'>   
+
+<div class='row'>
+<div class='span5'>
+
+<div class='well'>  
+
+  <table>
+    <legend><strong>Details</strong></legend> 
+    <div class="show_image"><%= image_tag(@user.avatar) %></div>
+    <br>    <br>
+    <tr>
+      <th align='left'>First Name</th>
+      <td  align='left'><%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <th align='left'>Last Name</th>
+      <td  align='left'><%= @user.last_name %></td>
+    </tr>
+    <tr>
+      <th  align='left'>Profile Name</th>
+      <td><%= @user.profile_name %></td>
+    </tr>
+    <tr>
+      <th  align='left'>Email address</th>
+      <td  align='left'><%= @user.email_address %></td>
+    </tr>
+    <tr>
+      <th  align='left'>Followers</th>
+      <td  align='left'><%= @user.followers.count %></td>
+    </tr>
+    <tr>
+      <th  align='left'>Following</th>
+      <td  align='left'><%= @user.following.count %></td>
+    </tr>
+    <tr>
+      <th  align='left'>Likes</th>
+      <td  align='left'> <%= @user.likes %> </td>
+    </tr>
+  </table>
+  
+  </div>
+
+</div>
+</div>
+
+
+</div>
+
+
+<% this_user = User.find_by_id(session[:user_id])%>
+<% if this_user != @user%>
+    <% if this_user.following?(@user)%>  
+
+      <%=link_to("UnFollow", {:controller => 'user' , :action=> 'update_followings', :value =>'unfollow',:left_profile_name => this_user.profile_name , :right_profile_name => @user.profile_name})%>
+
+
+    <%else%>  
+
+      <%=link_to("Follow", {:controller => 'user' , :action=> 'update_followings', :value =>'follow', :left_profile_name => this_user.profile_name , :right_profile_name => @user.profile_name})%>
+
+    <%end%>  
+<%end%>
+
+

@@ -1,0 +1,30 @@
+<br/>
+<%= link_to("Back Login Page", {:controller => 'access' , :action => 'login'}, class: "btn btn-info") %><br/><br/><br/>
+
+<body class="pre_login_page">
+<div class='row'>
+            <div class='span4'>
+
+            <div class='well'>              
+             <%= form_tag(:controller => 'password',:action => 'send_link') do %>
+             <br/><br/>
+             <fieldset>
+              <legend><strong>Change Password</strong></legend>
+              <table>
+                <tr>
+                      <td><%= label_tag(:email_address, "Email-Address") %>
+                      <%= text_field_tag(:email_address) %></td>
+                </tr>
+                
+              </table>
+
+              <%= submit_tag("Send me link", class: "btn btn-primary") %><br/><br/>
+            </fieldset>
+              <% end %>
+            </div>
+            </div>
+            <div class="span8">
+
+            </div>
+          </div>
+<body>
