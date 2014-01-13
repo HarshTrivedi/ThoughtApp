@@ -24,9 +24,10 @@ test:
 
 production:
   adapter: postgresql
-  database: thoughtapp_production
+  database: d70mcafcsp8jb8
   pool: 5
   timeout: 5000
-  username: harsh
-  password:
-  
+  username: lnqayoizjlebzc
+  password: wPBEjyBZ5Ro_kBWnKBlLVaS09K
+  host: ec2-54-225-124-205.compute-1.amazonaws.com
+  port: 5432
