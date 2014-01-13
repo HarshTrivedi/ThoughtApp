@@ -108,10 +108,6 @@
                     </form>
 		         </li>
 
-		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
-
-
 		      	 <li><%= link_to("Home", {:controller => 'thoughts', :action => 'show', :profile_name => session[:profile_name]}) %></li>
 		        <li><%= link_to("View Profile", {:controller => 'user', :action => 'show', :profile_name => session[:profile_name]}) %></li>
 				<li><%= link_to("Edit Profile", {:controller => 'user', :action => 'edit', :profile_name => session[:profile_name]}) %></li>
@@ -121,7 +117,7 @@
 				
 
 				<%this_user = User.find_by_profile_name(session[:profile_name])%>
-		         <li><div class="nav_image"><a href='../../../user/show?profile_name=<%=this_user.profile_name%>'><%= image_tag(this_user.avatar, :size =>'60x60')%> </a></div></li>
+		         <li><div class="nav_image"><a href='../../../user/show?profile_name=<%=this_user.profile_name%>'><%= image_tag(this_user.avatar, :size =>'45x45')%> </a></div></li>
 
 
 
