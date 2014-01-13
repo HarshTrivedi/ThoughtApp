@@ -1,4 +1,5 @@
 class UserMailer < ActionMailer::Base
+  include SendGrid
   default from: 'harshjtrivedi94@gmail.com'
  
   def welcome_email(user)
